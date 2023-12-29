@@ -11,6 +11,10 @@ add_executable(cavaland main.cpp
         CavaService.cpp
         CavaService.hpp
         Shader.hpp
+        renderers/IRenderer.hpp
+        renderers/horizontal_bars/HorizontalBarsRenderer.cpp
+        renderers/horizontal_bars/HorizontalBarsRenderer.hpp
+        constants.hpp
 )
 
 find_package(PkgConfig REQUIRED)

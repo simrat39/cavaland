@@ -7,6 +7,7 @@
 #include <sstream>
 #include <cstring>
 #include "CavaService.hpp"
+#include "constants.hpp"
 
 CavaService::CavaService() {
     dispatcher.connect([this]() {
@@ -24,18 +25,18 @@ CavaService::CavaService() {
         }
 
         // Create a stream to read from the pipe
-        char buffer[60];
-        double data[30]{0};
+        char buffer[NUM_BARS * 2];
+        double data[NUM_BARS]{0};
 
         // Infinite loop to continuously read from stdout
         while (true) {
             // Read a line from the pipe
-            auto bytes_read = fread(buffer, 1, 60, pipe);
-            if (bytes_read < 60) continue;
+            auto bytes_read = fread(buffer, 1, NUM_BARS * 2, pipe);
+            if (bytes_read < NUM_BARS * 2) continue;
 
             // Process the line as needed
             const uint16_t* uint16Buffer = reinterpret_cast<const uint16_t*>(buffer);
-            for (int i = 0; i < 30; ++i) {
+            for (int i = 0; i < NUM_BARS; ++i) {
                 // Read uint16_t values directly from the buffer
                 data[i] = static_cast<float>(uint16Buffer[i]) / 65535;
             }

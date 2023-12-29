@@ -2,6 +2,7 @@
 // Created by simrat39 on 12/26/23.
 //
 
+#include <gtkmm/cssprovider.h>
 #include "CavalandApp.hpp"
 #include "CavaWindow.hpp"
 #include "gtk4-layer-shell.h"
@@ -24,6 +25,11 @@ void CavalandApp::on_activate() {
     for (int i = 0; i < GTK_LAYER_SHELL_EDGE_ENTRY_NUMBER; i++) {
         gtk_layer_set_anchor(window->gobj(), static_cast<GtkLayerShellEdge>(i), anchors[i]);
     }
+
+    auto provider = Gtk::CssProvider::create();
+    provider->load_from_string("window{background:none;}");
+    Gtk::StyleContext::add_provider_for_display(Gdk::Display::get_default(), provider,
+                                                GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
 
     add_window(*window);
     window->present();
