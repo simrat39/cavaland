@@ -15,10 +15,10 @@ void main() {
 
   if (aPos.x == -1.f) {
     // Bottom and top left corners, adjust the initial offset for spacing
-    adjusted_offset.x += 0.005f;
+    adjusted_offset.x += 0.003f;
   } else {
     // Bottom and top right corners, adjust bar size
-    adjusted_offset.x -= 0.005f;
+    adjusted_offset.x -= 0.003f;
   }
 
   gl_Position = vec4(aPos.x + (adjusted_offset.x), aPos.y + adjusted_offset.y, aPos.z, 1.0);

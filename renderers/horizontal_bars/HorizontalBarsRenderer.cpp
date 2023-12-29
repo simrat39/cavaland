@@ -13,10 +13,11 @@ void HorizontalBarsRenderer::pre_render() {
 
     // Pre Draw
     std::vector<GLfloat> vertices = {
-            (-1) + bar_width, (-1.f) + 0.01f , 0.0f,  // top right
-            (-1) + bar_width, -1.f           , 0.f,  // bottom right
-            -1.f            , -1.f           , 0.f,  // bottom left
-            -1.f            , (-1.f) + 0.01f , 0.0f   // top left
+            // x              y                              z
+            LEFT + bar_width, BOTTOM + INITIAL_BAR_HEIGHT  , 0.0f,  // top right
+            LEFT + bar_width, BOTTOM                       , 0.f,   // bottom right
+            LEFT            , BOTTOM                       , 0.f,   // bottom left
+            LEFT            , BOTTOM + INITIAL_BAR_HEIGHT  , 0.0f   // top left
     };
 
     std::vector<GLuint> indices = {

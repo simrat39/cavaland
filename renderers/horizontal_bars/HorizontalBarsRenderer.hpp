@@ -13,6 +13,9 @@
 
 class HorizontalBarsRenderer: public IRenderer{
 public:
+   static constexpr GLfloat BAR_SPACING = 0.003f;
+   static constexpr GLfloat INITIAL_BAR_HEIGHT = 0.005f;
+
    void pre_render() override;
    void render(double* data) override;
 private:
