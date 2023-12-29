@@ -7,7 +7,7 @@
 #include <vector>
 
 void HorizontalBarsRenderer::pre_render() {
-    shader = new Shader{"../vertex.glsl", "../fragment.glsl"};
+    shader = new Shader{"../shaders/bars/vertex.glsl", "../shaders/bars/fragment.glsl"};
 
     float bar_width = (2.f/NUM_BARS);
 
