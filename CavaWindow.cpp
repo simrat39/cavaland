@@ -33,7 +33,7 @@ void CavaWindow::gl_on_realize() {
 
     shader = new Shader{"../vertex.glsl", "../fragment.glsl"};
 
-    float bar_width = (60.f / 800);
+    float bar_width = (2.f/30.f);
 
     // Pre Draw
     std::vector<GLfloat> vertices = {

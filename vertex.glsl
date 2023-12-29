@@ -14,7 +14,9 @@ void main() {
   }
 
   if (aPos.x == -1.f) {
-    adjusted_offset.x += 0.01f;
+    adjusted_offset.x += 0.005f;
+  } else {
+    adjusted_offset.x -= 0.005f;
   }
 
   gl_Position = vec4(aPos.x + (adjusted_offset.x), aPos.y + adjusted_offset.y, aPos.z, 1.0);
