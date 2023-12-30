@@ -26,7 +26,7 @@ CavaService::CavaService() {
 
         // Create a stream to read from the pipe
         char buffer[NUM_BARS * 2];
-        double data[NUM_BARS]{0};
+        float data[NUM_BARS]{0};
 
         // Infinite loop to continuously read from stdout
         while (true) {
@@ -51,7 +51,7 @@ CavaService::CavaService() {
     }).detach();
 }
 
-void CavaService::enqueue(double *data) {
+void CavaService::enqueue(float *data) {
     std::lock_guard<std::mutex> m{queue_mutex};
     queue.push(data);
 }

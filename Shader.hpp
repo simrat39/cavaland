@@ -7,11 +7,13 @@
 #include <fstream>
 #include <sstream>
 #include <iostream>
+#include <unordered_map>
 #include <epoxy/gl.h>
 
 class Shader {
 public:
     GLuint ID;
+    std::unordered_map<std::string, GLuint> uniforms;
 
     Shader(const char* vertex_shader_src_file, const char* fragment_shader_src_file) {
         std::ifstream vertex_fstream{vertex_shader_src_file};
@@ -70,6 +72,20 @@ public:
 
     void use() {
         glUseProgram(ID);
+    }
+
+    void register_uniform(std::string key) {
+        uniforms[key] = glGetUniformLocation(ID, key.c_str());
+    }
+
+    void set_float_array_uniform(std::string key, GLint count, float value[]) {
+        GLuint location = uniforms.at(key);
+        glUniform1fv(location, count, value);
+    }
+
+    void set_float_uniform(std::string key, float value) {
+        GLuint location = uniforms.at(key);
+        glUniform1f(location, value);
     }
 };
 

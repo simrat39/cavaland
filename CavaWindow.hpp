@@ -19,11 +19,11 @@ public:
     ~CavaWindow() override;
 private:
     IRenderer* renderer;
-    double data[NUM_BARS]{};
+    float data[NUM_BARS]{};
     CavaService* cs;
     Gtk::GLArea gl_area;
 
     void gl_on_realize();
     bool on_render(const Glib::RefPtr<Gdk::GLContext> & ctx);
-    void on_data(const double*);
+    void on_data(const float*);
 };

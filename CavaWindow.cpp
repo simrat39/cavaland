@@ -6,11 +6,11 @@
 #include <gtkmm/glarea.h>
 #include "CavaWindow.hpp"
 #include "CavaService.hpp"
-#include "renderers/horizontal_bars/HorizontalBarsRenderer.hpp"
 #include "constants.hpp"
+#include "renderers/frag/FragRenderer.hpp"
 
 CavaWindow::CavaWindow() {
-    renderer = new HorizontalBarsRenderer();
+    renderer = new FragRenderer();
 
     cs = new CavaService{};
     cs->signal_data.connect(sigc::mem_fun(*this, &CavaWindow::on_data));
@@ -22,7 +22,7 @@ CavaWindow::CavaWindow() {
 
 }
 
-void CavaWindow::on_data(const double *dataIn) {
+void CavaWindow::on_data(const float *dataIn) {
     for (int i = 0; i < NUM_BARS; ++i) {
        data[i] = dataIn[i];
     }

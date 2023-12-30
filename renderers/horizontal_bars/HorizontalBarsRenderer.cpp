@@ -56,7 +56,7 @@ void HorizontalBarsRenderer::pre_render() {
     glEnableVertexAttribArray(1);
 }
 
-void HorizontalBarsRenderer::render(double* data) {
+void HorizontalBarsRenderer::render(float* data) {
     glClear(GL_COLOR_BUFFER_BIT);
 
     shader->use();

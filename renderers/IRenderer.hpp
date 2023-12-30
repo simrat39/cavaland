@@ -7,5 +7,5 @@
 class IRenderer {
 public:
     virtual void pre_render() = 0;
-    virtual void render(double* data) = 0;
+    virtual void render(float* data) = 0;
 };

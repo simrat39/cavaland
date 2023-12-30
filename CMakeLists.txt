@@ -15,7 +15,10 @@ add_executable(cavaland main.cpp
         renderers/horizontal_bars/HorizontalBarsRenderer.cpp
         renderers/horizontal_bars/HorizontalBarsRenderer.hpp
         constants.hpp
+        renderers/frag/FragRenderer.cpp
 )
+
+target_compile_options(cavaland PRIVATE -O3)
 
 find_package(PkgConfig REQUIRED)
 
