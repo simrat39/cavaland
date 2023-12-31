@@ -7,7 +7,7 @@
 #include <vector>
 
 void FragRenderer::pre_render() {
-    shader = new Shader{"../shaders/frag/vertex.glsl", "../shaders/frag/fragment.glsl"};
+    shader = new Shader{"../shaders/frag/vertex.glsl", "../shaders/lines/wave.frag"};
 
     // Pre Draw
     std::vector<GLfloat> vertices = {
