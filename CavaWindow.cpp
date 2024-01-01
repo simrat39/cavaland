@@ -7,10 +7,10 @@
 #include "CavaWindow.hpp"
 #include "CavaService.hpp"
 #include "constants.hpp"
-#include "renderers/frag/FragRenderer.hpp"
+#include "Renderer.hpp"
 
 CavaWindow::CavaWindow() {
-    renderer = new FragRenderer();
+    renderer = new Renderer();
 
     cs = new CavaService{};
     cs->signal_data.connect(sigc::mem_fun(*this, &CavaWindow::on_data));

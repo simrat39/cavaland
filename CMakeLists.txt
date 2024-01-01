@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.28)
 project(cavaland)
 
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_CXX_STANDARD 20)
 
 add_executable(cavaland main.cpp
@@ -11,17 +12,14 @@ add_executable(cavaland main.cpp
         CavaService.cpp
         CavaService.hpp
         Shader.hpp
-        renderers/IRenderer.hpp
-        renderers/horizontal_bars/HorizontalBarsRenderer.cpp
-        renderers/horizontal_bars/HorizontalBarsRenderer.hpp
         constants.hpp
-        renderers/frag/FragRenderer.cpp
+        Renderer.cpp
+        Renderer.cpp
 )
 
 target_compile_options(cavaland PRIVATE -O3)
 
 find_package(PkgConfig REQUIRED)
-
 # glm
 pkg_check_modules(GLM REQUIRED glm)
 

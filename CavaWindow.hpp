@@ -9,16 +9,15 @@
 #include <gtkmm/glarea.h>
 #include <glm/glm.hpp>
 #include "CavaService.hpp"
-#include "Shader.hpp"
-#include "renderers/IRenderer.hpp"
 #include "constants.hpp"
+#include "Renderer.hpp"
 
 class CavaWindow : public Gtk::Window {
 public:
     CavaWindow();
     ~CavaWindow() override;
 private:
-    IRenderer* renderer;
+    Renderer* renderer;
     float data[NUM_BARS]{};
     CavaService* cs;
     Gtk::GLArea gl_area;

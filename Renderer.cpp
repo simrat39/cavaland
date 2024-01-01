@@ -2,20 +2,20 @@
 // Created by simrat39 on 12/29/23.
 //
 
-#include "FragRenderer.hpp"
+#include "Renderer.hpp"
 #include <epoxy/gl.h>
 #include <vector>
 
-void FragRenderer::pre_render() {
-    shader = new Shader{"../shaders/frag/vertex.glsl", "../shaders/lines/wave.frag"};
+void Renderer::pre_render() {
+    shader = new Shader{"../shaders/vertex.glsl", "../shaders/bars/fragment.glsl"};
 
     // Pre Draw
     std::vector<GLfloat> vertices = {
             // x   y       z
-            RIGHT, TOP   , 0.f,  // top right
+            RIGHT, TOP   , 0.f,   // top right
             RIGHT, BOTTOM, 0.f,   // bottom right
             LEFT , BOTTOM, 0.f,   // bottom left
-            LEFT , TOP   , 0.f   // top left
+            LEFT , TOP   , 0.f    // top left
     };
 
     std::vector<GLuint> indices = {
@@ -42,10 +42,6 @@ void FragRenderer::pre_render() {
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), nullptr);
     glEnableVertexAttribArray(0);
 
-//    for (int i = 0; i < NUM_BARS; ++i) {
-//        heights[i] = 0.f;
-//    }
-
     shader->register_uniform("heights");
     shader->register_uniform("width");
     shader->register_uniform("height");
@@ -53,14 +49,10 @@ void FragRenderer::pre_render() {
     glViewport(0,0, WIDTH, HEIGHT);
 }
 
-void FragRenderer::render(float *data) {
+void Renderer::render(float *data) {
     glClear(GL_COLOR_BUFFER_BIT);
 
     shader->use();
-
-//    for (int i = 0; i < NUM_BARS; ++i) {
-//        heights[i] = data[i];
-//    }
 
     shader->set_float_uniform("width", WIDTH);
     shader->set_float_uniform("height", HEIGHT);
