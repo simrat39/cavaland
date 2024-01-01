@@ -5,9 +5,10 @@ uniform float width;
 uniform float height;
 
 void main() {
-    vec3 color1 = vec3(69.f, 104.f, 220.f);
-    vec3 color2 = vec3(176.f, 106.f, 179.f);
     vec3 normalize = vec3(255.f);
+
+    vec3 color1 = vec3(69.f, 104.f, 220.f) / normalize;
+    vec3 color2 = vec3(176.f, 106.f, 179.f) / normalize;
 
     vec2 uv = vec2(gl_FragCoord.x / width, gl_FragCoord.y / height);
 
@@ -27,9 +28,13 @@ void main() {
     }
 
     float bar_height = heights[idx];
+    float gradient_mix_amount = uv.y;
+    if (uv.y >= 0.01f) {
+        gradient_mix_amount /= bar_height;
+    }
 
-    if (uv.x > barStart && uv.y < bar_height) {
-        gl_FragColor = vec4(mix(color1/normalize, color2/normalize, uv.y / bar_height), 1.0f);
+    if (uv.x > barStart && (uv.y < bar_height || uv.y < 0.01f)) {
+        gl_FragColor = vec4(mix(color1, color2, gradient_mix_amount), 1.0f);
     } else {
         discard; // Skip rendering for the area outside the bars
     }
