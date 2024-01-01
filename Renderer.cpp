@@ -7,15 +7,15 @@
 #include <vector>
 
 void Renderer::pre_render() {
-    shader = new Shader{"../shaders/vertex.glsl", "../shaders/bars/fragment.glsl"};
+    shader = new Shader{"../shaders/vertex.glsl", "../shaders/bars/x_gradient.glsl"};
 
     // Pre Draw
     std::vector<GLfloat> vertices = {
             // x   y       z
-            RIGHT, TOP   , 0.f,   // top right
+            RIGHT, TOP   , 0.f,  // top right
             RIGHT, BOTTOM, 0.f,   // bottom right
             LEFT , BOTTOM, 0.f,   // bottom left
-            LEFT , TOP   , 0.f    // top left
+            LEFT , TOP   , 0.f   // top left
     };
 
     std::vector<GLuint> indices = {

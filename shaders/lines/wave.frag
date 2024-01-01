@@ -12,11 +12,6 @@ float sineInOut(float t) {
     return -0.5 * (cos(PI * t) - 1.0);
 }
 
-float cubicOut(float t) {
-    float f = t - 1.0;
-    return f * f * f + 1.0;
-}
-
 void main() {
     vec3 color1 = vec3(69.f, 104.f, 220.f);
     vec3 color2 = vec3(176.f, 106.f, 179.f);

@@ -29,7 +29,7 @@ void main() {
     float currentHeight = heights[idx];
 
     if ((uv.x > barStart && uv.y < currentHeight)) {
-        gl_FragColor = vec4(mix(color1/normalize, color2/normalize, (uv.y / currentHeight)), 1.0f);
+        gl_FragColor = vec4(mix(color1/normalize, color2/normalize, uv.x), 1.0f);
     } else {
         discard; // Skip rendering for the area outside the bars
     }
