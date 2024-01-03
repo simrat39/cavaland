@@ -17,9 +17,11 @@ void CavalandApp::on_activate() {
     Application::on_activate();
 
     auto window = Gtk::make_managed<CavaWindow>();
+    window->set_size_request(WIDTH, HEIGHT);
 
     gtk_layer_init_for_window(window->gobj());
     gtk_layer_set_layer(window->gobj(), GtkLayerShellLayer::GTK_LAYER_SHELL_LAYER_BACKGROUND);
+    gtk_layer_set_exclusive_zone(window->gobj(), -1);
 
     static const gboolean anchors[] = {TRUE, TRUE, TRUE, TRUE};
     for (int i = 0; i < GTK_LAYER_SHELL_EDGE_ENTRY_NUMBER; i++) {

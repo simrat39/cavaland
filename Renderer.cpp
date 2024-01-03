@@ -7,7 +7,7 @@
 #include <vector>
 
 void Renderer::pre_render() {
-    shader = new Shader{"../shaders/vertex.glsl", "../shaders/bars/y_gradient.glsl"};
+    shader = new Shader{"../shaders/vertex.glsl", "../shaders/bars/x_gradient.glsl"};
 
     // Pre Draw
     std::vector<GLfloat> vertices = {

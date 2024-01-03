@@ -2,68 +2,98 @@
 // Created by simrat39 on 12/26/23.
 //
 
-#include <thread>
-#include <iostream>
-#include <sstream>
-#include <cstring>
 #include "CavaService.hpp"
 #include "constants.hpp"
+#include <cstdio>
+#include <cstdlib>
+#include <filesystem>
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <thread>
 
 CavaService::CavaService() {
-    dispatcher.connect([this]() {
-        process_queue();
-    });
+  dispatcher.connect([this]() { process_queue(); });
 
-    std::thread([&]() {
-        std::string command = "cava -p ../cava_config";  // Replace with the command you want to run
+  std::thread([&]() {
+    std::string cava_config = generate_config();
+    std::string command =
+        "cava -p " + cava_config; // Replace with the command you want to run
 
-        // Open a pipe to read from the command
-        FILE *pipe = popen(command.c_str(), "r");
-        if (!pipe) {
-            std::cerr << "Error opening pipe to command." << std::endl;
-            return EXIT_FAILURE;
-        }
+    // Open a pipe to read from the command
+    FILE *pipe = popen(command.c_str(), "r");
+    if (!pipe) {
+      std::cerr << "Error opening pipe to command." << std::endl;
+      return EXIT_FAILURE;
+    }
 
-        // Create a stream to read from the pipe
-        char buffer[NUM_BARS * 2];
-        float data[NUM_BARS]{0};
+    // Create a stream to read from the pipe
+    char buffer[NUM_BARS * 2];
+    float data[NUM_BARS]{0};
 
-        // Infinite loop to continuously read from stdout
-        while (true) {
-            // Read a line from the pipe
-            auto bytes_read = fread(buffer, 1, NUM_BARS * 2, pipe);
-            if (bytes_read < NUM_BARS * 2) continue;
+    // Infinite loop to continuously read from stdout
+    while (true) {
+      // Read a line from the pipe
+      auto bytes_read = fread(buffer, 1, NUM_BARS * 2, pipe);
+      if (bytes_read < NUM_BARS * 2)
+        continue;
 
-            // Process the line as needed
-            const uint16_t* uint16Buffer = reinterpret_cast<const uint16_t*>(buffer);
-            for (int i = 0; i < NUM_BARS; ++i) {
-                // Read uint16_t values directly from the buffer
-                data[i] = static_cast<float>(uint16Buffer[i]) / 65535;
-            }
-            // You can do further processing on the line if necessary
-            enqueue(data);
-            dispatcher.emit();
-        }
+      // Process the line as needed
+      const uint16_t *uint16Buffer = reinterpret_cast<const uint16_t *>(buffer);
+      for (int i = 0; i < NUM_BARS; ++i) {
+        // Read uint16_t values directly from the buffer
+        data[i] = static_cast<float>(uint16Buffer[i]) / 65535;
+      }
+      // You can do further processing on the line if necessary
+      enqueue(data);
+      dispatcher.emit();
+    }
 
-        // Close the pipe
-        pclose(pipe);
-        return EXIT_SUCCESS;
-    }).detach();
+    // Close the pipe
+    pclose(pipe);
+    return EXIT_SUCCESS;
+  }).detach();
 }
 
 void CavaService::enqueue(float *data) {
-    std::lock_guard<std::mutex> m{queue_mutex};
-    queue.push(data);
+  std::lock_guard<std::mutex> m{queue_mutex};
+  queue.push(data);
 }
 
 void CavaService::process_queue() {
-    std::lock_guard<std::mutex> m{queue_mutex};
+  std::lock_guard<std::mutex> m{queue_mutex};
 
-    while (!queue.empty()) {
-        auto top = queue.front();
-        queue.pop();
-        signal_data.emit(top);
-    }
+  while (!queue.empty()) {
+    auto top = queue.front();
+    queue.pop();
+    signal_data.emit(top);
+  }
+}
+
+std::string CavaService::generate_config() {
+  std::string contents = "[general]\n"
+                         "bars = 60\n"
+                         "[output]\n"
+                         "method = raw\n";
+
+  auto tmp_dir = std::filesystem::temp_directory_path();
+
+  auto now = std::chrono::system_clock::now();
+  auto timestamp = std::chrono::duration_cast<std::chrono::milliseconds>(
+                       now.time_since_epoch())
+                       .count();
+
+  std::filesystem::path tmp_file_name =
+      tmp_dir / ("cavaland_cava_config_" + std::to_string(timestamp));
+
+  std::ofstream tmp_file{tmp_file_name};
+
+  if (!tmp_file.is_open()) {
+    std::cerr << "Failed to open the temporary file for writing\n";
+    return nullptr;
+  }
+
+  return tmp_file_name.string();
 }
 
 CavaService::~CavaService() = default;

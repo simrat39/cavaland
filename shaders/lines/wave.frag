@@ -41,7 +41,7 @@ void main() {
         gl_FragColor = vec4(0.f, 0.f, 0.f, 1.f);
     } else {
         if (uv.y < local_height) {
-            gl_FragColor = vec4(mix(color1 / normalize, color2 / normalize, uv.x), uv.y / local_height);
+            gl_FragColor = vec4(mix(color1 / normalize, color2 / normalize, uv.x), sineInOut(uv.y / local_height));
         } else {
             discard;
         }

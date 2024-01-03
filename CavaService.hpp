@@ -21,4 +21,6 @@ private:
     std::mutex queue_mutex;
 
     Glib::Dispatcher dispatcher;
+
+    std::string generate_config();
 };
