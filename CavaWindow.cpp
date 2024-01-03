@@ -2,7 +2,6 @@
 // Created by simrat39 on 12/26/23.
 //
 
-#include <iostream>
 #include <gtkmm/glarea.h>
 #include "CavaWindow.hpp"
 #include "CavaService.hpp"

@@ -17,6 +17,7 @@ CavaService::CavaService() {
 
   std::thread([&]() {
     std::string cava_config = generate_config();
+    std::cout << cava_config << std::endl;
     std::string command =
         "cava -p " + cava_config; // Replace with the command you want to run
 
@@ -92,6 +93,7 @@ std::string CavaService::generate_config() {
     std::cerr << "Failed to open the temporary file for writing\n";
     return nullptr;
   }
+  tmp_file << contents;
 
   return tmp_file_name.string();
 }
