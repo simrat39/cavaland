@@ -7,8 +7,9 @@
 #include <cstdio>
 #include <cstdlib>
 #include <filesystem>
-#include <iostream>
+#include <format>
 #include <fstream>
+#include <iostream>
 #include <string>
 #include <thread>
 
@@ -72,10 +73,11 @@ void CavaService::process_queue() {
 }
 
 std::string CavaService::generate_config() {
-  std::string contents = "[general]\n"
-                         "bars = 60\n"
-                         "[output]\n"
-                         "method = raw\n";
+  std::string contents = std::format("[general]\n"
+                                     "bars = {}\n"
+                                     "[output]\n"
+                                     "method = raw\n",
+                                     NUM_BARS);
 
   auto tmp_dir = std::filesystem::temp_directory_path();
 

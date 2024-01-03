@@ -4,9 +4,10 @@
 #define PI 3.141592653589793
 #endif
 
-uniform float[60] heights;
+uniform float[120] heights;
 uniform float width;
 uniform float height;
+uniform float num_bars;
 
 float sineInOut(float t) {
     return -0.5 * (cos(PI * t) - 1.0);
@@ -19,8 +20,8 @@ void main() {
 
     vec2 uv = vec2(gl_FragCoord.x / width, gl_FragCoord.y / height);
 
-    int idx = int(uv.x * 60);
-    float x_offset = 1 / 60.f;
+    int idx = int(uv.x * num_bars);
+    float x_offset = 1 / num_bars;
 
     float localized_x_offset = uv.x - (idx * x_offset);
 
@@ -31,11 +32,11 @@ void main() {
     }
 
     float bar_height_next = heights[idx + 1];
-    if (idx == 59) {
+    if (idx == num_bars - 1) {
         bar_height_next = 0.0f;
     }
 
-    float local_height = mix(bar_height, bar_height_next, sineInOut(localized_x_offset * 60.f));
+    float local_height = mix(bar_height, bar_height_next, sineInOut(localized_x_offset * num_bars));
 
     if (abs(uv.y - local_height) < 0.0025f) {
         gl_FragColor = vec4(0.f, 0.f, 0.f, 1.f);

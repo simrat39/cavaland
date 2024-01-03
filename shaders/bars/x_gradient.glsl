@@ -1,8 +1,9 @@
 #version 410 core
 
-uniform float[60] heights;
+uniform float[120] heights;
 uniform float width;
 uniform float height;
+uniform float num_bars;
 
 void main() {
     vec3 color1 = vec3(69.f, 104.f, 220.f);
@@ -11,8 +12,8 @@ void main() {
 
     vec2 uv = vec2(gl_FragCoord.x / width, gl_FragCoord.y / height);
 
-    int idx = int(uv.x * 60);
-    float b_width = (1.0 / 60.0); // Calculate the width of each bar
+    int idx = int(uv.x * num_bars);
+    float b_width = (1.0 / num_bars); // Calculate the width of each bar
 
     float barStart = float(idx) * b_width;
     float barEnd = barStart + b_width;

@@ -6,9 +6,7 @@
 
 #include <epoxy/gl.h>
 #include <glm/glm.hpp>
-#include <array>
 #include "Shader.hpp"
-#include "constants.hpp"
 
 class Renderer {
 public:
