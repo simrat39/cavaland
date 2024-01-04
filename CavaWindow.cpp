@@ -18,7 +18,6 @@ CavaWindow::CavaWindow() {
     gl_area.signal_render().connect(sigc::mem_fun(*this, &CavaWindow::on_render), false);
 
     set_child(gl_area);
-
 }
 
 void CavaWindow::on_data(const float *dataIn) {

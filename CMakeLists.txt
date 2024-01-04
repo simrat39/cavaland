@@ -4,6 +4,8 @@ project(cavaland)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_CXX_STANDARD 20)
 
+find_package(Boost 1.83.0 COMPONENTS program_options REQUIRED)
+
 add_executable(cavaland main.cpp
         CavalandApp.cpp
         CavalandApp.hpp
@@ -18,6 +20,9 @@ add_executable(cavaland main.cpp
 )
 
 target_compile_options(cavaland PRIVATE -O3)
+
+# Boost
+target_link_libraries(cavaland Boost::program_options)
 
 find_package(PkgConfig REQUIRED)
 # glm
