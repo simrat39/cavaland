@@ -3,6 +3,8 @@
 #include <boost/program_options/options_description.hpp>
 #include <boost/program_options/value_semantic.hpp>
 #include <iostream>
+#include <string>
+#include "ConfigManager.hpp"
 
 int main(int argc, const char **argv) {
   namespace po = boost::program_options;
@@ -18,6 +20,12 @@ int main(int argc, const char **argv) {
   if (vm.count("help")) {
     std::cout << desc << "\n";
     return 1;
+  }
+
+  if (vm.count("config")) {
+    ConfigManager::get_instance().init(vm["config"].as<std::string>());
+  } else {
+    ConfigManager::get_instance().init("/usr/share/cavaland/example.cfg");
   }
 
   auto app = CavalandApp::create();

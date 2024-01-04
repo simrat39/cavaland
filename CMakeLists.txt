@@ -7,16 +7,24 @@ set(CMAKE_CXX_STANDARD 20)
 find_package(Boost 1.83.0 COMPONENTS program_options REQUIRED)
 
 add_executable(cavaland main.cpp
-        CavalandApp.cpp
         CavalandApp.hpp
-        CavaWindow.cpp
+        CavalandApp.cpp
+
         CavaWindow.hpp
-        CavaService.cpp
+        CavaWindow.cpp
+
         CavaService.hpp
+        CavaService.cpp
+
         Shader.hpp
+
         constants.hpp
+
+        Renderer.hpp
         Renderer.cpp
-        Renderer.cpp
+
+        ConfigManager.cpp
+        ConfigManager.hpp
 )
 
 target_compile_options(cavaland PRIVATE -O3)
@@ -60,3 +68,12 @@ link_directories(${EPOXY_LIBRARY_DIRS})
 link_libraries(${EPOXY_LIBRARIES})
 
 target_link_libraries(cavaland ${EPOXY_LIBRARIES})
+
+# libconfig
+pkg_check_modules(LIBCONFIG REQUIRED libconfig++)
+
+include_directories(${LIBCONFIG_INCLUDE_DIRS})
+link_directories(${LIBCONFIG_LIBRARY_DIRS})
+link_libraries(${LIBCONFIG_LIBRARIES})
+
+target_link_libraries(cavaland ${LIBCONFIG_LIBRARIES})

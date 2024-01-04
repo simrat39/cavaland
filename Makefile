@@ -15,6 +15,8 @@ install:
 	## Shaders
 	mkdir -p /usr/share/cavaland/
 	cp -r ./shaders/ /usr/share/cavaland/
+	## Config
+	cp -r ./example.cfg /usr/share/cavaland/
 
 uninstall:
 	## Binary

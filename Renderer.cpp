@@ -3,13 +3,19 @@
 //
 
 #include "Renderer.hpp"
+#include "ConfigManager.hpp"
 #include "constants.hpp"
 #include <epoxy/gl.h>
 #include <vector>
 
 void Renderer::pre_render() {
-  shader =
-      new Shader{"/usr/share/cavaland/shaders/vertex.glsl", "/usr/share/cavaland/shaders/bars/x_gradient.glsl"};
+  shader = new Shader{
+      "/usr/share/cavaland/shaders/vertex.glsl",
+      ConfigManager::get_instance()
+          .get_or_default("shader",
+                          "/usr/share/cavaland/shaders/bars/x_gradient.glsl")
+          .c_str(),
+  };
 
   // Pre Draw
   std::vector<GLfloat> vertices = {
@@ -56,9 +62,11 @@ void Renderer::render(float *data) {
 
   shader->use();
 
-  shader->set_float_uniform("width", WIDTH);
-  shader->set_float_uniform("height", HEIGHT);
-  shader->set_float_uniform("num_bars", NUM_BARS);
+  auto& cfg = ConfigManager::get_instance();
+
+  shader->set_float_uniform("width", std::stof(cfg.get_or_default("width", "1920")));
+  shader->set_float_uniform("height", std::stof(cfg.get_or_default("height", "200")));
+  shader->set_float_uniform("num_bars", std::stof(cfg.get_or_default("bars", "120")));
   // Maybe use a texture for this
   shader->set_float_array_uniform("heights", NUM_BARS, data);
 
