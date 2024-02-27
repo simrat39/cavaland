@@ -7,7 +7,6 @@
 #include <gtkmm/window.h>
 #include <gtkmm/box.h>
 #include <gtkmm/glarea.h>
-#include <glm/glm.hpp>
 #include "CavaService.hpp"
 #include "constants.hpp"
 #include "Renderer.hpp"

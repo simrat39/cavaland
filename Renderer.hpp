@@ -5,7 +5,6 @@
 #pragma once
 
 #include <epoxy/gl.h>
-#include <glm/glm.hpp>
 #include "Shader.hpp"
 
 class Renderer {

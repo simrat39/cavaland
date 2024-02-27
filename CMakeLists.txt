@@ -33,14 +33,6 @@ target_compile_options(cavaland PRIVATE -O3)
 target_link_libraries(cavaland Boost::program_options)
 
 find_package(PkgConfig REQUIRED)
-# glm
-pkg_check_modules(GLM REQUIRED glm)
-
-include_directories(${GLM_INCLUDE_DIRS})
-link_directories(${GLM_LIBRARY_DIRS})
-link_libraries(${GLM_LIBRARIES})
-
-target_link_libraries(cavaland ${GLM_LIBRARIES})
 
 # GTKmm
 pkg_check_modules(GTKMM REQUIRED gtkmm-4.0)
