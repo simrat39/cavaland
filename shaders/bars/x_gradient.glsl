@@ -10,6 +10,12 @@ void main() {
     vec3 color2 = vec3(176.f, 106.f, 179.f);
     vec3 normalize = vec3(255.f);
 
+    float y_offset = 0.f;
+
+    if (gl_FragCoord.x > width || gl_FragCoord.y > height) {
+        discard;
+    }
+
     vec2 uv = vec2(gl_FragCoord.x / width, gl_FragCoord.y / height);
 
     int idx = int(uv.x * num_bars);
@@ -29,7 +35,11 @@ void main() {
 
     float currentHeight = heights[idx];
 
-    if ((uv.x > barStart && (uv.y < currentHeight || uv.y < 0.01f))) {
+    bool clearsYOffset = (uv.y > y_offset);
+    bool shouldShowWhenSilent = (uv.y < (y_offset + 0.01f));
+    bool isYinBetweenOffsetAndHeight = (uv.y < (currentHeight + y_offset));
+
+    if ((uv.x > barStart && clearsYOffset && (isYinBetweenOffsetAndHeight || shouldShowWhenSilent))) {
         gl_FragColor = vec4(mix(color1/normalize, color2/normalize, uv.x), 1.0f);
     } else {
         discard; // Skip rendering for the area outside the bars

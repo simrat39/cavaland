@@ -1,0 +1,32 @@
+[
+{
+  "directory": "/home/simrat39/dev/cavaland/cmake-build-debug",
+  "command": "/usr/bin/c++ -I/usr/include/gtkmm-4.0 -I/usr/lib/gtkmm-4.0/include -I/usr/include/pangomm-2.48 -I/usr/lib/pangomm-2.48/include -I/usr/include/giomm-2.68 -I/usr/lib/giomm-2.68/include -I/usr/include/glibmm-2.68 -I/usr/lib/glibmm-2.68/include -I/usr/include/cairomm-1.16 -I/usr/lib/cairomm-1.16/include -I/usr/include/sigc++-3.0 -I/usr/lib/sigc++-3.0/include -I/usr/include/gtk-4.0/unix-print -I/usr/include/gtk-4.0 -I/usr/include/pango-1.0 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/cairo -I/usr/include/harfbuzz -I/usr/include/freetype2 -I/usr/include/graphene-1.0 -I/usr/lib/graphene-1.0/include -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include -I/usr/include/fribidi -I/usr/include/libpng16 -I/usr/include/pixman-1 -I/usr/include/libmount -I/usr/include/blkid -I/usr/include/sysprof-6 -I/usr/include/gtk4-layer-shell -g -std=gnu++20 -fdiagnostics-color=always -O3 -o CMakeFiles/cavaland.dir/main.cpp.o -c /home/simrat39/dev/cavaland/main.cpp",
+  "file": "/home/simrat39/dev/cavaland/main.cpp",
+  "output": "CMakeFiles/cavaland.dir/main.cpp.o"
+},
+{
+  "directory": "/home/simrat39/dev/cavaland/cmake-build-debug",
+  "command": "/usr/bin/c++ -I/usr/include/gtkmm-4.0 -I/usr/lib/gtkmm-4.0/include -I/usr/include/pangomm-2.48 -I/usr/lib/pangomm-2.48/include -I/usr/include/giomm-2.68 -I/usr/lib/giomm-2.68/include -I/usr/include/glibmm-2.68 -I/usr/lib/glibmm-2.68/include -I/usr/include/cairomm-1.16 -I/usr/lib/cairomm-1.16/include -I/usr/include/sigc++-3.0 -I/usr/lib/sigc++-3.0/include -I/usr/include/gtk-4.0/unix-print -I/usr/include/gtk-4.0 -I/usr/include/pango-1.0 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/cairo -I/usr/include/harfbuzz -I/usr/include/freetype2 -I/usr/include/graphene-1.0 -I/usr/lib/graphene-1.0/include -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include -I/usr/include/fribidi -I/usr/include/libpng16 -I/usr/include/pixman-1 -I/usr/include/libmount -I/usr/include/blkid -I/usr/include/sysprof-6 -I/usr/include/gtk4-layer-shell -g -std=gnu++20 -fdiagnostics-color=always -O3 -o CMakeFiles/cavaland.dir/CavalandApp.cpp.o -c /home/simrat39/dev/cavaland/CavalandApp.cpp",
+  "file": "/home/simrat39/dev/cavaland/CavalandApp.cpp",
+  "output": "CMakeFiles/cavaland.dir/CavalandApp.cpp.o"
+},
+{
+  "directory": "/home/simrat39/dev/cavaland/cmake-build-debug",
+  "command": "/usr/bin/c++ -I/usr/include/gtkmm-4.0 -I/usr/lib/gtkmm-4.0/include -I/usr/include/pangomm-2.48 -I/usr/lib/pangomm-2.48/include -I/usr/include/giomm-2.68 -I/usr/lib/giomm-2.68/include -I/usr/include/glibmm-2.68 -I/usr/lib/glibmm-2.68/include -I/usr/include/cairomm-1.16 -I/usr/lib/cairomm-1.16/include -I/usr/include/sigc++-3.0 -I/usr/lib/sigc++-3.0/include -I/usr/include/gtk-4.0/unix-print -I/usr/include/gtk-4.0 -I/usr/include/pango-1.0 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/cairo -I/usr/include/harfbuzz -I/usr/include/freetype2 -I/usr/include/graphene-1.0 -I/usr/lib/graphene-1.0/include -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include -I/usr/include/fribidi -I/usr/include/libpng16 -I/usr/include/pixman-1 -I/usr/include/libmount -I/usr/include/blkid -I/usr/include/sysprof-6 -I/usr/include/gtk4-layer-shell -g -std=gnu++20 -fdiagnostics-color=always -O3 -o CMakeFiles/cavaland.dir/CavaWindow.cpp.o -c /home/simrat39/dev/cavaland/CavaWindow.cpp",
+  "file": "/home/simrat39/dev/cavaland/CavaWindow.cpp",
+  "output": "CMakeFiles/cavaland.dir/CavaWindow.cpp.o"
+},
+{
+  "directory": "/home/simrat39/dev/cavaland/cmake-build-debug",
+  "command": "/usr/bin/c++ -I/usr/include/gtkmm-4.0 -I/usr/lib/gtkmm-4.0/include -I/usr/include/pangomm-2.48 -I/usr/lib/pangomm-2.48/include -I/usr/include/giomm-2.68 -I/usr/lib/giomm-2.68/include -I/usr/include/glibmm-2.68 -I/usr/lib/glibmm-2.68/include -I/usr/include/cairomm-1.16 -I/usr/lib/cairomm-1.16/include -I/usr/include/sigc++-3.0 -I/usr/lib/sigc++-3.0/include -I/usr/include/gtk-4.0/unix-print -I/usr/include/gtk-4.0 -I/usr/include/pango-1.0 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/cairo -I/usr/include/harfbuzz -I/usr/include/freetype2 -I/usr/include/graphene-1.0 -I/usr/lib/graphene-1.0/include -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include -I/usr/include/fribidi -I/usr/include/libpng16 -I/usr/include/pixman-1 -I/usr/include/libmount -I/usr/include/blkid -I/usr/include/sysprof-6 -I/usr/include/gtk4-layer-shell -g -std=gnu++20 -fdiagnostics-color=always -O3 -o CMakeFiles/cavaland.dir/CavaService.cpp.o -c /home/simrat39/dev/cavaland/CavaService.cpp",
+  "file": "/home/simrat39/dev/cavaland/CavaService.cpp",
+  "output": "CMakeFiles/cavaland.dir/CavaService.cpp.o"
+},
+{
+  "directory": "/home/simrat39/dev/cavaland/cmake-build-debug",
+  "command": "/usr/bin/c++ -I/usr/include/gtkmm-4.0 -I/usr/lib/gtkmm-4.0/include -I/usr/include/pangomm-2.48 -I/usr/lib/pangomm-2.48/include -I/usr/include/giomm-2.68 -I/usr/lib/giomm-2.68/include -I/usr/include/glibmm-2.68 -I/usr/lib/glibmm-2.68/include -I/usr/include/cairomm-1.16 -I/usr/lib/cairomm-1.16/include -I/usr/include/sigc++-3.0 -I/usr/lib/sigc++-3.0/include -I/usr/include/gtk-4.0/unix-print -I/usr/include/gtk-4.0 -I/usr/include/pango-1.0 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/cairo -I/usr/include/harfbuzz -I/usr/include/freetype2 -I/usr/include/graphene-1.0 -I/usr/lib/graphene-1.0/include -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include -I/usr/include/fribidi -I/usr/include/libpng16 -I/usr/include/pixman-1 -I/usr/include/libmount -I/usr/include/blkid -I/usr/include/sysprof-6 -I/usr/include/gtk4-layer-shell -g -std=gnu++20 -fdiagnostics-color=always -O3 -o CMakeFiles/cavaland.dir/Renderer.cpp.o -c /home/simrat39/dev/cavaland/Renderer.cpp",
+  "file": "/home/simrat39/dev/cavaland/Renderer.cpp",
+  "output": "CMakeFiles/cavaland.dir/Renderer.cpp.o"
+}
+]

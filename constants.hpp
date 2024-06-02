@@ -12,4 +12,4 @@ constexpr float TOP = 1.f;
 constexpr float BOTTOM = -1.f;
 
 constexpr float WIDTH = 1920.f;
-constexpr float HEIGHT = 300.f;
+constexpr float HEIGHT = 400.f;

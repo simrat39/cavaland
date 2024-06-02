@@ -19,7 +19,6 @@ void CavalandApp::on_activate() {
   Application::on_activate();
 
   auto window = Gtk::make_managed<CavaWindow>();
-  window->set_size_request(WIDTH, HEIGHT);
 
   gtk_layer_init_for_window(window->gobj());
   gtk_layer_set_layer(window->gobj(),
