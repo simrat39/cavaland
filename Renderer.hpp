@@ -4,17 +4,24 @@
 
 #pragma once
 
-#include <epoxy/gl.h>
 #include "Shader.hpp"
+#include <epoxy/gl.h>
+#include <epoxy/gl_generated.h>
 
 class Renderer {
 public:
-   void pre_render();
-   void render(float* data);
-private:
-    GLuint VAO;
-    GLuint VBO;
-    GLuint EBO;
+  Renderer();
 
-    Shader* shader;
+  void pre_render();
+  void render(float *data);
+private:
+  GLuint VAO;
+  GLuint VBO;
+  GLuint EBO;
+
+  GLfloat width;
+  GLfloat height;
+  GLuint bars;
+
+  Shader *shader;
 };

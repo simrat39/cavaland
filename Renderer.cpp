@@ -9,6 +9,14 @@
 #include <vector>
 #include <string>
 
+Renderer::Renderer() {
+  auto &cfg = ConfigManager::get_instance();
+
+  width = cfg.get_or_default<float>("width", 1920);
+  height = cfg.get_or_default<float>("height", 200);
+  bars = cfg.get_or_default<float>("bars", 120);
+}
+
 void Renderer::pre_render()
 {
   shader = new Shader{
@@ -67,9 +75,9 @@ void Renderer::render(float *data)
 
   auto &cfg = ConfigManager::get_instance();
 
-  shader->set_float_uniform("width", cfg.get_or_default<float>("width", 1920));
-  shader->set_float_uniform("height", cfg.get_or_default<float>("height", 200));
-  shader->set_float_uniform("num_bars", cfg.get_or_default<float>("bars", 120));
+  shader->set_float_uniform("width", width);
+  shader->set_float_uniform("height", height);
+  shader->set_float_uniform("num_bars", bars);
   // Maybe use a texture for this
   shader->set_float_array_uniform("heights", NUM_BARS, data);
 

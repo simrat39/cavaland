@@ -19,10 +19,8 @@ CavaService::CavaService() {
   std::thread([&]() {
     std::string cava_config = generate_config();
     std::cout << cava_config << std::endl;
-    std::string command =
-        "cava -p " + cava_config; // Replace with the command you want to run
+    std::string command = "cava -p " + cava_config;
 
-    // Open a pipe to read from the command
     FILE *pipe = popen(command.c_str(), "r");
     if (!pipe) {
       std::cerr << "Error opening pipe to command." << std::endl;
@@ -33,20 +31,15 @@ CavaService::CavaService() {
     char buffer[NUM_BARS * 2];
     float data[NUM_BARS]{0};
 
-    // Infinite loop to continuously read from stdout
     while (true) {
-      // Read a line from the pipe
       auto bytes_read = fread(buffer, 1, NUM_BARS * 2, pipe);
       if (bytes_read < NUM_BARS * 2)
         continue;
 
-      // Process the line as needed
       const uint16_t *uint16Buffer = reinterpret_cast<const uint16_t *>(buffer);
       for (int i = 0; i < NUM_BARS; ++i) {
-        // Read uint16_t values directly from the buffer
         data[i] = static_cast<float>(uint16Buffer[i]) / 65535;
       }
-      // You can do further processing on the line if necessary
       enqueue(data);
       dispatcher.emit();
     }
