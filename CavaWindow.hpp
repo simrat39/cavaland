@@ -7,6 +7,7 @@
 #include <gtkmm/window.h>
 #include <gtkmm/box.h>
 #include <gtkmm/glarea.h>
+#include <gtkmm/fixed.h>
 #include "CavaService.hpp"
 #include "constants.hpp"
 #include "Renderer.hpp"
@@ -19,7 +20,9 @@ private:
     Renderer* renderer;
     float data[NUM_BARS]{};
     CavaService* cs;
+
     Gtk::GLArea gl_area;
+    Gtk::Fixed fixed;
 
     void gl_on_realize();
     bool on_render(const Glib::RefPtr<Gdk::GLContext> & ctx);

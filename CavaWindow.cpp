@@ -7,6 +7,9 @@
 #include "CavaService.hpp"
 #include "constants.hpp"
 #include "Renderer.hpp"
+#include "gtk4-layer-shell.h"
+#include <gdkmm/monitor.h>
+#include <gdk/gdk.h>
 
 CavaWindow::CavaWindow()
 {
@@ -15,11 +18,14 @@ CavaWindow::CavaWindow()
     cs = new CavaService{};
     cs->signal_data.connect(sigc::mem_fun(*this, &CavaWindow::on_data));
 
+    fixed.put(gl_area, X_OFFSET, Y_OFFSET);
+
+    gl_area.set_size_request(WIDTH, HEIGHT);
     gl_area.set_required_version(4, 6);
     gl_area.signal_realize().connect(sigc::mem_fun(*this, &CavaWindow::gl_on_realize));
     gl_area.signal_render().connect(sigc::mem_fun(*this, &CavaWindow::on_render), false);
 
-    set_child(gl_area);
+    set_child(fixed);
 }
 
 void CavaWindow::on_data(const float *dataIn)

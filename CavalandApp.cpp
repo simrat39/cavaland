@@ -42,6 +42,7 @@ void CavalandApp::on_activate() {
       GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
 
   add_window(*window);
+
   window->present();
   window->show();
 }
