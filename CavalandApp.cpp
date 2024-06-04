@@ -4,9 +4,7 @@
 
 #include "CavalandApp.hpp"
 #include "CavaWindow.hpp"
-#include "ConfigManager.hpp"
 #include "gtk4-layer-shell.h"
-#include <format>
 #include <gtkmm/cssprovider.h>
 #include <string>
 
