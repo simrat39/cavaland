@@ -4,6 +4,7 @@
 
 #pragma once
 
+#include "ConfigManager.hpp"
 #include <queue>
 #include <glibmm/dispatcher.h>
 
@@ -17,6 +18,7 @@ public:
 
     sigc::signal<void(float*)> signal_data;
 private:
+    ConfigManager& cfg_mgr;
     std::queue<float*> queue;
     std::mutex queue_mutex;
 

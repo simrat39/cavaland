@@ -7,7 +7,6 @@
 #include "CavaService.hpp"
 #include "constants.hpp"
 #include "Renderer.hpp"
-#include "gtk4-layer-shell.h"
 #include <gdkmm/monitor.h>
 #include <gdk/gdk.h>
 
@@ -30,7 +29,7 @@ CavaWindow::CavaWindow()
 
 void CavaWindow::on_data(const float *dataIn)
 {
-    for (int i = 0; i < NUM_BARS; ++i)
+    for (int i = 0; i < NUM_BARS_MAX; ++i)
     {
         data[i] = dataIn[i];
     }

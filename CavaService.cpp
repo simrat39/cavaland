@@ -3,6 +3,7 @@
 //
 
 #include "CavaService.hpp"
+#include "ConfigManager.hpp"
 #include "constants.hpp"
 #include <cstdio>
 #include <cstdlib>
@@ -11,15 +12,18 @@
 #include <fstream>
 #include <iostream>
 #include <string>
+#include <sys/types.h>
 #include <thread>
 
-CavaService::CavaService() {
+CavaService::CavaService(): cfg_mgr(ConfigManager::get_instance()) {
   dispatcher.connect([this]() { process_queue(); });
 
   std::thread([&]() {
     std::string cava_config = generate_config();
     std::cout << cava_config << std::endl;
     std::string command = "cava -p " + cava_config;
+
+    int cfg_bars = cfg_mgr.get_or_default("bars", 120);
 
     FILE *pipe = popen(command.c_str(), "r");
     if (!pipe) {
@@ -28,16 +32,16 @@ CavaService::CavaService() {
     }
 
     // Create a stream to read from the pipe
-    char buffer[NUM_BARS * 2];
-    float data[NUM_BARS]{0};
+    char buffer[cfg_bars * 2];
+    float data[NUM_BARS_MAX]{0};
 
     while (true) {
-      auto bytes_read = fread(buffer, 1, NUM_BARS * 2, pipe);
-      if (bytes_read < NUM_BARS * 2)
+      auto bytes_read = fread(buffer, 1, cfg_bars * 2, pipe);
+      if (bytes_read < cfg_bars * 2)
         continue;
 
       const uint16_t *uint16Buffer = reinterpret_cast<const uint16_t *>(buffer);
-      for (int i = 0; i < NUM_BARS; ++i) {
+      for (int i = 0; i < cfg_bars; ++i) {
         data[i] = static_cast<float>(uint16Buffer[i]) / 65535;
       }
       enqueue(data);
@@ -66,11 +70,13 @@ void CavaService::process_queue() {
 }
 
 std::string CavaService::generate_config() {
+  int cfg_bars = cfg_mgr.get_or_default("bars", 120);
+
   std::string contents = std::format("[general]\n"
                                      "bars = {}\n"
                                      "[output]\n"
                                      "method = raw\n",
-                                     NUM_BARS);
+                                     cfg_bars);
 
   auto tmp_dir = std::filesystem::temp_directory_path();
 

@@ -18,7 +18,7 @@ public:
     ~CavaWindow() override;
 private:
     Renderer* renderer;
-    float data[NUM_BARS]{};
+    float data[NUM_BARS_MAX]{};
     CavaService* cs;
 
     Gtk::GLArea gl_area;

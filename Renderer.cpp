@@ -79,7 +79,7 @@ void Renderer::render(float *data)
   shader->set_float_uniform("height", height);
   shader->set_uint_uniform("num_bars", bars);
   // Maybe use a texture for this
-  shader->set_float_array_uniform("heights", NUM_BARS, data);
+  shader->set_float_array_uniform("heights", bars, data);
 
   glBindVertexArray(VAO);
   glDrawElements(GL_TRIANGLES, 8, GL_UNSIGNED_INT, nullptr);
