@@ -12,7 +12,7 @@ constexpr float TOP = 1.f;
 constexpr float BOTTOM = -1.f;
 
 constexpr float WIDTH = 1920.f;
-constexpr float HEIGHT = 400.f;
+constexpr float HEIGHT = 1200.f;
 
 constexpr float X_OFFSET = 0.f;
-constexpr float Y_OFFSET = 800.f;
+constexpr float Y_OFFSET = 0.f;

@@ -3,7 +3,7 @@
 uniform float[120] heights;
 uniform float width;
 uniform float height;
-uniform float num_bars;
+uniform uint num_bars;
 
 void main() {
     vec3 normalize = vec3(255.f);

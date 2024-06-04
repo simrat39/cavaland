@@ -12,9 +12,9 @@
 Renderer::Renderer() {
   auto &cfg = ConfigManager::get_instance();
 
-  width = cfg.get_or_default<float>("width", 1920);
-  height = cfg.get_or_default<float>("height", 200);
-  bars = cfg.get_or_default<float>("bars", 120);
+  width = cfg.get_or_default("width", 1920.f);
+  height = cfg.get_or_default("height", 200.f);
+  bars = cfg.get_or_default("bars", 120);
 }
 
 void Renderer::pre_render()
@@ -22,7 +22,7 @@ void Renderer::pre_render()
   shader = new Shader{
       "/usr/share/cavaland/shaders/vertex.glsl",
       ConfigManager::get_instance()
-          .get_or_default<std::string>("shader",
+          .get_or_default("shader",
                                        "/usr/share/cavaland/shaders/bars/x_gradient.glsl")
           .c_str(),
   };
@@ -77,7 +77,7 @@ void Renderer::render(float *data)
 
   shader->set_float_uniform("width", width);
   shader->set_float_uniform("height", height);
-  shader->set_float_uniform("num_bars", bars);
+  shader->set_uint_uniform("num_bars", bars);
   // Maybe use a texture for this
   shader->set_float_array_uniform("heights", NUM_BARS, data);
 

@@ -83,6 +83,11 @@ public:
         glUniform1fv(location, count, value);
     }
 
+    void set_uint_uniform(std::string key, GLuint value) {
+        GLuint location = uniforms.at(key);
+        glUniform1ui(location, value);
+    }
+
     void set_float_uniform(std::string key, float value) {
         GLuint location = uniforms.at(key);
         glUniform1f(location, value);

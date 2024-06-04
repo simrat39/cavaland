@@ -7,7 +7,7 @@
 uniform float[120] heights;
 uniform float width;
 uniform float height;
-uniform float num_bars;
+uniform uint num_bars;
 
 float sineInOut(float t) {
     return -0.5 * (cos(PI * t) - 1.0);
